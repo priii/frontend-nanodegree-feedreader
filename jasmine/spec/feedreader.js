@@ -47,13 +47,14 @@ $(function() {
 
 
     /* TODO: Write a new test suite named "The menu" */
+      //import * as matchers from 'jasmine-jquery-matchers';
       describe("The Menu", function(){
         var menuIcon = $('.menu-icon-link');
         var menuHidden = $('.menu-hidden');
 
         it('Menu element is hidden by default', function(){
           //menuIcon.trigger('click');
-          expect(menuIcon).not.toHaveClass('menuHidden');
+          expect($(menuHidden)).toBeHidden();
         });
       });
         /* TODO: Write a test that ensures the menu element is
