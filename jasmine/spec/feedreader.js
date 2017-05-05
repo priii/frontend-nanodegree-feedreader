@@ -68,8 +68,8 @@ $(function() {
          * clicked and does it hide when clicked again.
          */
          it('Menu appears when clicked', function(){
-
-           expect(1).toBe(1);
+           
+          expect(menuIcon.length).toBe(0);
          });
          it('Menu disappears when clicked again', function(){
 
