@@ -33,6 +33,7 @@ $(function() {
          */
          it('all url are defined and its not empty', function(){
            //expect(allFeeds).toBeDefined();
+
            expect(allFeeds.url).not.toBe({});
          });
 
@@ -54,7 +55,7 @@ $(function() {
 
         it('Menu element is hidden by default', function(){
           //menuIcon.trigger('click');
-          expect($(menuHidden)).toBeHidden();
+          expect(menuHidden).toBeHidden();
         });
       });
         /* TODO: Write a test that ensures the menu element is
