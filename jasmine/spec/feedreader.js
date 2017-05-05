@@ -59,20 +59,22 @@ $(function() {
          * hiding/showing of the menu element.
          */
         it('Menu element is hidden by default', function(){
-
-          expect(menuIcon.length).toBe(1);
+              expect(menuIcon.length).toBe(1);
         });
         /* TODO: Write a test that ensures the menu changes
          * visibility when the menu icon is clicked. This test
          * should have two expectations: does the menu display when
          * clicked and does it hide when clicked again.
          */
+
          it('Menu appears when clicked', function(){
-           
-          expect(menuIcon.length).toBe(0);
+           $('body').toggleClass('menu-hidden');
+           menuHidden = $('.menu-hidden');
+          expect(menuHidden.length).toBe(0);
          });
          it('Menu disappears when clicked again', function(){
-
+           $('body').toggleClass('menu-hidden');
+           menuHidden = $('.menu-hidden');
            expect(menuHidden.length).toBe(1);
          });
 
@@ -81,7 +83,9 @@ $(function() {
 
 
     /* TODO: Write a new test suite named "Initial Entries" */
+    describe('Initial Entries', function(){
 
+    });
         /* TODO: Write a test that ensures when the loadFeed
          * function is called and completes its work, there is at least
          * a single .entry element within the .feed container.
