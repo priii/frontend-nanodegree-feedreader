@@ -31,10 +31,13 @@ $(function() {
          * in the allFeeds object and ensures it has a URL defined
          * and that the URL is not empty.
          */
+         // to check the url& name is not empty comparing it to an null value
          it('all url are defined and its not empty', function(){
            //expect(allFeeds).toBeDefined();
-
-           expect(allFeeds.url).not.toBe({});
+           for( var i=0;i< allFeeds.length; i++){
+            expect(allFeeds[i].url).toBeDefined();
+           expect(allFeeds[i].url).not.toBe({});
+         }
          });
 
         /* TODO: Write a test that loops through each feed
@@ -42,7 +45,10 @@ $(function() {
          * and that the name is not empty.
          */
          it('Name is defined and its not empty', function(){
-           expect(allFeeds.name).not.toEqual({});
+           for( var i=0;i< allFeeds.length; i++){
+             expect(allFeeds[i].name).toBeDefined();
+           expect(allFeeds[i].name).not.toEqual({});
+         }
          });
     });
 
@@ -58,6 +64,8 @@ $(function() {
          * the CSS to determine how we're performing the
          * hiding/showing of the menu element.
          */
+
+         // By default when the page loads menu icons length is 1 (which is hidden) the length changes to 0 when the menuIcon is clicked!
         it('Menu element is hidden by default', function(){
               expect(menuIcon.length).toBe(1);
         });
@@ -84,19 +92,52 @@ $(function() {
 
     /* TODO: Write a new test suite named "Initial Entries" */
     describe('Initial Entries', function(){
+      /* TODO: Write a test that ensures when the loadFeed
+       * function is called and completes its work, there is at least
+       * a single .entry element within the .feed container.
+       * Remember, loadFeed() is asynchronous so this test will require
+       * the use of Jasmine's beforeEach and asynchronous done() function.
+       */
+       // loadFeed(0) loads the first feed ! using done() to inform asynch function runs succesfully to the program
+       beforeEach(function(done){
+           loadFeed(0,function(){
+             done();
+           });
 
+       });
+       // checking article class ".entry" not to be 0 ! by default it has 10 entries !
+       it('load feed has atleast single entry', function(){
+         expect($('.entry').length).not.toBe(0);
+       });
     });
-        /* TODO: Write a test that ensures when the loadFeed
-         * function is called and completes its work, there is at least
-         * a single .entry element within the .feed container.
-         * Remember, loadFeed() is asynchronous so this test will require
-         * the use of Jasmine's beforeEach and asynchronous done() function.
-         */
+
 
     /* TODO: Write a new test suite named "New Feed Selection" */
+    describe('New Feed Selection', function(){
+      /* TODO: Write a test that ensures when a new feed is loaded
+       * by the loadFeed function that the content actually changes.
+       * Remember, loadFeed() is asynchronous.
+       */
+       // getting the header title of two different feeds (0 and 1 which is udacity and css trick heading) and comparing them to check whether the contant actually changes or not!
+       var title1,
+       title2;
+       beforeEach(function(done){
+           loadFeed(1,function(){
+          title1 = $('.header-title').text();
+             done();
+           });
+       });
 
-        /* TODO: Write a test that ensures when a new feed is loaded
-         * by the loadFeed function that the content actually changes.
-         * Remember, loadFeed() is asynchronous.
-         */
+       afterEach(function(done){
+           loadFeed(0,function(){
+           title2 = $('.header-title').text();
+             done();
+           });
+       });
+       it('load function changes content', function(){
+         expect(title1).not.toBe(title2);
+       });
+
+    });
+
 }());
