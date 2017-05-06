@@ -47,7 +47,7 @@ $(function() {
         it('Name is defined and its not empty', function() {
             for (var i = 0; i < allFeeds.length; i++) {
                 expect(allFeeds[i].name).toBeDefined();
-                expect(allFeeds[i].name.length).not.toEqual(0);
+                expect(allFeeds[i].name.length).not.toBe(0);
             }
         });
     });
