@@ -31,12 +31,12 @@ $(function() {
          * in the allFeeds object and ensures it has a URL defined
          * and that the URL is not empty.
          */
-        // to check the url& name is not empty comparing it to an null value
+        // to check the url& name is not empty comparing it to 0
         it('all url are defined and its not empty', function() {
             //expect(allFeeds).toBeDefined();
             for (var i = 0; i < allFeeds.length; i++) {
                 expect(allFeeds[i].url).toBeDefined();
-                expect(allFeeds[i].url).not.toBe({});
+                expect(allFeeds[i].url).not.toBe(0);
             }
         });
 
@@ -47,7 +47,7 @@ $(function() {
         it('Name is defined and its not empty', function() {
             for (var i = 0; i < allFeeds.length; i++) {
                 expect(allFeeds[i].name).toBeDefined();
-                expect(allFeeds[i].name).not.toEqual({});
+                expect(allFeeds[i].name).not.toEqual(0);
             }
         });
     });
@@ -67,7 +67,7 @@ $(function() {
 
         // By default when the page loads menu icons length is 1 (which is hidden) the length changes to 0 when the menuIcon is clicked!
         it('Menu element is hidden by default', function() {
-            expect(menuIcon.length).toBe(1);
+            expect(menuHidden.length).toBe(1);
         });
         /* TODO: Write a test that ensures the menu changes
          * visibility when the menu icon is clicked. This test
@@ -76,12 +76,12 @@ $(function() {
          */
 
         it('Menu appears when clicked', function() {
-            $('body').toggleClass('menu-hidden');
+            menuIcon.click();
             menuHidden = $('.menu-hidden');
             expect(menuHidden.length).toBe(0);
         });
         it('Menu disappears when clicked again', function() {
-            $('body').toggleClass('menu-hidden');
+            menuIcon.click();
             menuHidden = $('.menu-hidden');
             expect(menuHidden.length).toBe(1);
         });
@@ -105,9 +105,9 @@ $(function() {
             });
 
         });
-        // checking article class ".entry" not to be 0 ! by default it has 10 entries !
+        // checking article class ".entry" and ".feed" not to be 0 ! by default it has 10 entries !
         it('load feed has atleast single entry', function() {
-            expect($('.entry').length).not.toBe(0);
+            expect($('.feed .entry').length).not.toBe(0);
         });
     });
 
@@ -118,24 +118,20 @@ $(function() {
          * by the loadFeed function that the content actually changes.
          * Remember, loadFeed() is asynchronous.
          */
-        // getting the header title of two different feeds (0 and 1 which is udacity and css trick heading) and comparing them to check whether the contant actually changes or not!
-        var title1,
-            title2;
+        // getting the text from the container of two different feeds (0 and 1 which is udacity and css trick feeds) and comparing them to check whether the contant actually changes or not!
+        var feed_zero,
+            feed_one;
         beforeEach(function(done) {
             loadFeed(1, function() {
-                title1 = $('.header-title').text();
+                feed_one = $('.feed').text();
+                loadFeed(0, function() {
+                    feed_zero = $('.feed').text();
                 done();
             });
         });
-
-        afterEach(function(done) {
-            loadFeed(0, function() {
-                title2 = $('.header-title').text();
-                done();
-            });
         });
         it('load function changes content', function() {
-            expect(title1).not.toBe(title2);
+            expect(feed_one).not.toBe(feed_zero);
         });
 
     });
