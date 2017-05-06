@@ -31,12 +31,12 @@ $(function() {
          * in the allFeeds object and ensures it has a URL defined
          * and that the URL is not empty.
          */
-        // to check the url& name is not empty comparing it to 0
+        // to check the url& name length's are not empty comparing it to 0
         it('all url are defined and its not empty', function() {
             //expect(allFeeds).toBeDefined();
             for (var i = 0; i < allFeeds.length; i++) {
                 expect(allFeeds[i].url).toBeDefined();
-                expect(allFeeds[i].url).not.toBe(0);
+                expect(allFeeds[i].url.length).not.toBe(0);
             }
         });
 
@@ -47,7 +47,7 @@ $(function() {
         it('Name is defined and its not empty', function() {
             for (var i = 0; i < allFeeds.length; i++) {
                 expect(allFeeds[i].name).toBeDefined();
-                expect(allFeeds[i].name).not.toEqual(0);
+                expect(allFeeds[i].name.length).not.toEqual(0);
             }
         });
     });
@@ -119,19 +119,19 @@ $(function() {
          * Remember, loadFeed() is asynchronous.
          */
         // getting the text from the container of two different feeds (0 and 1 which is udacity and css trick feeds) and comparing them to check whether the contant actually changes or not!
-        var feed_zero,
-            feed_one;
+        var feedZero,
+            feedOne;
         beforeEach(function(done) {
             loadFeed(1, function() {
-                feed_one = $('.feed').text();
+                feedOne = $('.feed').text();
                 loadFeed(0, function() {
-                    feed_zero = $('.feed').text();
+                    feedZero = $('.feed').text();
                 done();
             });
         });
         });
         it('load function changes content', function() {
-            expect(feed_one).not.toBe(feed_zero);
+            expect(feedOne).not.toBe(feedZero);
         });
 
     });
