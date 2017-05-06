@@ -17,8 +17,6 @@ In this project you are given a web-based application that reads RSS feeds. The 
 7. Wrote a new test suite named `"New Feed Selection"` and a test that ensures when a new feed is loaded by the `loadFeed` function that the content actually changes .
   *By getting the header title of two different feeds (0 and 1 which is udacity and css trick heading) and comparing them to check whether the contant actually changes or not!*
 
-21. Write a README file detailing all steps required to successfully run the application. If you have added additional tests (for Udacious Test Coverage),  provide documentation for what these future features are and what the tests are checking for.
-
 ## To Run this project
 1. Download or cloan the [frontend-nanodegree-feedreader](https://github.com/priii/frontend-nanodegree-feedreader) project!
 2. Run the index.html file in your chrome Browser.
