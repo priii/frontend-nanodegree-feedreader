@@ -8,19 +8,19 @@
 
 // The names and URLs to all of the feeds we'd like available.
 var allFeeds = [
-    {
-        name: 'Udacity Blog',
-        url: 'http://blog.udacity.com/feed'
-    }, {
-        name: 'CSS Tricks',
-        url: 'http://feeds.feedburner.com/CssTricks'
-    }, {
-        name: 'HTML5 Rocks',
-        url: 'http://feeds.feedburner.com/html5rocks'
-    }, {
-        name: 'Linear Digressions',
-        url: 'http://feeds.feedburner.com/udacity-linear-digressions'
-    }
+  {
+      name: 'Udacity Blog',
+      url: 'http://blog.udacity.com/feed'
+  }, {
+      name: 'CSS Tricks',
+      url: 'http://feeds.feedburner.com/CssTricks'
+  }, {
+      name: 'HTML5 Rocks',
+      url: 'http://feeds.feedburner.com/html5rocks'
+  }, {
+      name: 'Linear Digressions',
+      url: 'http://feeds.feedburner.com/udacity-linear-digressions'
+  }
 ];
 
 /* This function starts up our application. The Google Feed
@@ -30,6 +30,7 @@ var allFeeds = [
 function init() {
     // Load the first feed we've defined (index of 0).
     loadFeed(0);
+
 }
 
 /* This function performs everything necessary to load a
@@ -49,6 +50,7 @@ function init() {
        url: 'https://rsstojson.udacity.com/parseFeed',
        data: JSON.stringify({url: feedUrl}),
        contentType:"application/json",
+
        success: function (result, status){
 
                  var container = $('.feed'),
@@ -56,6 +58,7 @@ function init() {
                      entries = result.feed.entries,
                      entriesLen = entries.length,
                      entryTemplate = Handlebars.compile($('.tpl-entry').html());
+
 
                  title.html(feedName);   // Set the header text
                  container.empty();      // Empty out all previous entries
@@ -65,9 +68,12 @@ function init() {
                   * entryTemplate (created above using Handlebars) and append
                   * the resulting HTML to the list of entries on the page.
                   */
+
+                  console.log($('.header-title').text());
                  entries.forEach(function(entry) {
                      container.append(entryTemplate(entry));
                  });
+                 //console.log(container.entries.length);
 
                  if (cb) {
                      cb();
@@ -98,6 +104,7 @@ $(function() {
         feedItemTemplate = Handlebars.compile($('.tpl-feed-list-item').html()),
         feedId = 0,
         menuIcon = $('.menu-icon-link');
+        //console.log(menuIcon);
 
     /* Loop through all of our feeds, assigning an id property to
      * each of the feeds based upon its index within the array.
@@ -120,6 +127,7 @@ $(function() {
         var item = $(this);
 
         $('body').addClass('menu-hidden');
+
         loadFeed(item.data('id'));
         return false;
     });
@@ -129,5 +137,8 @@ $(function() {
      */
     menuIcon.on('click', function() {
         $('body').toggleClass('menu-hidden');
+        //var menuHidden = $('.menu-hidden');
+        //console.log(menuHidden);
+
     });
 }());
